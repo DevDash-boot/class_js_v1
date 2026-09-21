@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch02 - index04.html</h1>
+
+    <script>
+      console.log("----- 1. 자동 형 변환 -----");
+      console.log(100 + 2); // 102
+      console.log(100 + "2"); // 1002 (숫자가 문자로 변해서 이어 붙임)
+      console.log(100 * "2"); // 200 (곱셈은 문자가 숫자로 변해서 계산됨)
+      console.log(100 - "2"); // 98 (뺄셈도 문자가 숫자로 변해서 계산됨)
+      console.log(100 / "2"); // 50 (나누기 연산도 문자가 숫자로 변해서 계산됨)
+      console.log(100 % "2"); // 0 (나머지 연산도 문자가 숫자로 변해서 계산됨)
+
+      console.log(100 * "abc"); // NaN (숫자로 바꿀 수 없는 문자열은 NaN)
+      console.log(100 + "abc"); // 100abc (덧셈 연산은 이어붙임 발생됨)
+
+      console.log("----- 2. 수동 형 변환 : 문자 -> 숫자 -----");
+      let priceText = "123";
+      let price = Number(priceText);
+      console.log(typeof priceText);
+      console.log(typeof price);
+      console.log(price + 100); // 223
+
+      // 숫자로 바꿀 수 없는 문자를 바꾸면 NaN가 나온다.
+      console.log(Number("abc")); // NaN
+      // 주의할 점 : 만약 빈 문자열을 숫자로 형 변환하면?
+      console.log(Number()); // 0 (빈 문자열은 0이 된다.)
+
+      console.log("----- 3. 수동 형 변환 : 숫자 -> 문자 -----");
+      let count = 456;
+      let countText = String(count);
+      console.log(typeof count);
+      console.log(typeof countText);
+      console.log(countText + "개 입니다.");
+
+      console.log("----- 4. 입력 값은 항상 문자열이다. -----");
+      let input1 = "10";
+      let input2 = "20";
+
+      console.log(input1 + input2); // 1020
+      console.log(Number(input1) + Number(input2)); // 30
+    </script>
+  </body>
+</html>

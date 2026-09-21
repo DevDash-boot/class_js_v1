@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch03 - index02.html</h1>
+
+    <script>
+      console.log("-- 1. 블록 밖으로 새어 나온다.");
+      if (true) {
+        var oldStyle = "var로 만든 변수";
+        let newStyle = "let으로 만든 변수";
+      }
+      console.log(oldStyle); // if 블록 밖인데 읽힌다.
+      // console.log(newStyle);  // 오류 발생
+
+      console.log("-- 2. for문에서 특히 위험하다.");
+      for (var i = 0; i < 3; i++) {}
+      // 반복문 종료 후 i값 확인
+      console.log(i);
+
+      for (let j = 0; j < 3; j++) {}
+      // 반복문 종료 후 j값 확인
+      // console.log(j); // 에러 발생
+
+      console.log("-- 3. 같은 이름으로 변수를 다시 선언해도 에러가 발생하지 않는다.");
+      var userName = "홍길동";
+      var userName = "이순신"; // 실수로 다시 선언했지만 에러 없이 덮어쓴다.
+      console.log(userName);
+    </script>
+  </body>
+</html>

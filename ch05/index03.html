@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch05 - index03.html</h1>
+    <script>
+      console.log("1. 함수 표현식을 화살표 함수로 사용");
+      const addOld = function (x, y) {
+        return x + y;
+      };
+      const addNew = (x, y) => {
+        return x + y;
+      };
+      // 한 줄만 사용하는 경우 중괄호와 return을 생략할 수 있다.(함께 생략해야 함)
+      const addNew2 = (x, y) => x + y;
+
+      console.log("2. 축약 규칙에 대해서 살펴보자.");
+      // 2-1. 몸체 전체가 return 한 줄이면 중괄호와 return 키워드를 생략할 수 있다.
+      const subtract = (n1, n2) => n1 - n2;
+      console.log(subtract(100, 10));
+
+      // 2-2. 매개변수가 하나면 괄호도 생략 가능하다.  자동 정렬로 괄호가 자동으로 생김
+      const resultDouble = (n) => n * 2;
+      console.log(resultDouble(5));
+
+      // 2-3. 매개변수가 없으면 빈 괄호만 사용하면 된다.
+      const getRandom = () => Math.random();
+      console.log(getRandom());
+
+      // 2-4. 여러 줄이라면 중괄호와 return 키워드를 그대로 사용한다.
+      const calculateTotal = (price, count) => {
+        const subTotal = price * count;
+        const tax = subTotal * 0.1;
+        return subTotal + tax;
+      };
+      console.log(calculateTotal(1000, 3));
+
+      console.log("3. 객체를 한 줄로 돌려줄 때는 소괄호로 감싼다.");
+      const makeUser = (name) => ({ name: name, active: true });
+      console.log(makeUser("홍길동"));
+    </script>
+  </body>
+</html>

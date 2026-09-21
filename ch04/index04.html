@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch04 - index04.html</h1>
+    <script>
+      console.log("-- 1. 생성자 함수");
+      // 설계도 역할을 하는 함수. 관례상 이름은 대문자로 시작
+      // this는 지금 만들어지고 있는 새 객체를 가리킨다.
+      function Person(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.introduce = function () {
+          console.log(this.lastName + this.firstName + " 입니다.");
+        };
+      }
+
+      // new 키워드를 붙여서 호출하면 설계도대로 새로운 객체가 만들어진다.
+      const person1 = new Person("길동", "홍");
+      const person2 = new Person("순신", "이");
+      const person3 = new Person("스오", "야");
+      console.log(person1);
+      console.log(person2);
+      console.log(person3);
+
+      console.log("-- 2. class 문법 : 자바와 비슷");
+      class Student {
+        constructor(name, major) {
+          this.name = name;
+          this.major = major;
+        }
+        // 메서드는 클래스 안에 바로 적는다.
+        introduce() {
+          console.log(this.name + " : " + this.major);
+        }
+      }
+      const student1 = new Student("김유신", "체육");
+      const student2 = new Student("강감찬", "국문");
+      student1.introduce();
+      student2.introduce();
+    </script>
+  </body>
+</html>

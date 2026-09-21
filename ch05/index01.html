@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch05 - index01.html</h1>
+    <script>
+      // 1. 함수 선언문(매개변수)
+      function addNumber(a, b) {
+        const sum = a + b;
+        return sum; // return은 나를 호출한 사람에게 결과를 밖으로 돌려주고 함수를 끝낸다.
+      }
+
+      // 2. 함수 호출(인수)
+      const result = addNumber(10, 20);
+      console.log(result);
+
+      // 3. 생성자 함수와 차이
+      function Person(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+      }
+
+      // 데이터 타입 typeof
+      console.log(typeof addNumber); // function
+      console.log(typeof Person); // function
+      // 함수 선언문, 생성자 함수는 같은 타입으로 취급한다.
+      // 다른점은 호출하는 방법 뿐이다.
+
+      const sum = addNumber(20, 20); // 그냥 호출 -> return값이 돌아온다.
+      const person1 = new Person("길동", "홍"); // new를 붙여 호출 -> 새 객체 생성
+      console.log(sum); // 값이 돌아옴
+      console.log(person1); // 객체 생성
+
+      // 4. 실험 1. 함수 선언문에 return 키워드가 없는데 대입연산자를 사용하는 경우
+      function sayHello(name) {
+        console.log(name + "입니다.");
+      }
+      const returned = sayHello("홍길동");
+      console.log(returned); // undefined
+
+      // 5. 실험 2. return 키워드가 2개라면
+      function checkAge(age) {
+        if (age < 0) {
+          return "잘못된 나이";
+          // 리턴 키워드를 만나는 순간 끝난다. (실행의 제어권을 반납)
+        } else {
+          return age + "세";
+        }
+        console.log("여기 결과가 찍힐까?"); // 안 찍힌다.
+      }
+      console.log(checkAge(-5));
+      console.log(checkAge(25));
+
+      // 6. 매개 변수에 기본값을 설정할 수 있다.
+      // 값이 없다면 기본값 동작, 값이 있다면 기본값 동작 x
+      function greet(name = "손님") {
+        console.log(name + "님 환영합니다.");
+      }
+      greet();
+      greet("이순신");
+    </script>
+  </body>
+</html>

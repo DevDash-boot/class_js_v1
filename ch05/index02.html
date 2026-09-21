@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch05 - index02.html</h1>
+    <script>
+      // 1. 함수 표현식 : 이름이 없는 함수(익명 함수)를 만들어 변수에 담는다.
+      const getCurrentTime = function () {
+        const now = new Date(); // 기본 내장 객체
+        return now.toLocaleTimeString();
+      };
+
+      // 2. 함수 자체 vs 함수 호출
+      console.log(getCurrentTime); // 함수를 값으로 취급
+      console.log(getCurrentTime()); // 함수 호출
+      console.log(typeof getCurrentTime); // function
+
+      // 3. 함수를 다른 변수에 복사할 수 있다.
+      const anotherNamer = getCurrentTime;
+      console.log(anotherNamer());
+
+      // 4. 함수 선언문 vs 함수 표현식 비교
+      // 선언문 : 이름이 있고, 파일 어디서든지 호출 가능
+      function multiply1(x, y) {
+        return x * y;
+      }
+
+      // 표현식 : 변수에 담고, 변수를 만든 뒤에서만 호출 가능
+      const multiply2 = function (x, y) {
+        return x * y;
+      };
+      // 밑에서 사용하면 똑같으나 multiply2가 표현식 위에 위치하면 에러 발생
+      console.log(multiply1(2, 5));
+      console.log(multiply2(2, 5));
+    </script>
+  </body>
+</html>

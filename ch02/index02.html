@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch02 - index02.html</h1>
+
+    <script>
+      // 1. 자주 쓰는 자료형 세 가지
+      let age = 25; // number(정수, 소수 구분 없음)
+      let nickname = "홍길동"; // String
+      let isDeveloper = true; // boolean
+
+      // 2. "값이 없음을 뜻하는 두 가지"
+      let emptyBox; // undefined : 상자를 만들고 아무것도 안 넣은 상태
+      let nothing = null; // 개발자가 일부러 비워 둔다고 직접 넣는 값
+
+      // 3. typeof 로 타입을 확인한다.
+      console.log(typeof age);
+      console.log(typeof nickname);
+      console.log(typeof isDeveloper);
+      console.log(typeof emptyBox);
+      console.log(typeof nothing); // null 값은 typeof를 쓸 때 object로 확인 됨.
+
+      // 정수 든 소수든 number로 확인됨
+      console.log(typeof 10);
+      console.log(typeof 10.5);
+
+      // 실험 : 변수 안에 들어간 값이 null 값인지 여부를 확인하고 싶은 경우
+      console.log(nothing === null);
+    </script>
+  </body>
+</html>

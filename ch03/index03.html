@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch03 - index03.html</h1>
+    <button onclick="sayHello()">클릭</button>
+
+    <script>
+      console.log("----- 1. var의 호이스팅 -----");
+
+      // console.log(abc); 선언한적 없음 오류 발생
+      console.log(greeting); // undefined가 나온다.
+      // 자바스크립트 엔진이 실행 전에 var greeting; 만 맨 위로 끌어올렸기 때문이다.
+      var greeting = "안녕";
+      console.log(greeting); // 정상 출력
+
+      console.log("----- 2. let, const의 호이스팅, TDZ -----");
+      // let과 const도 선언이 끌어올려진다.
+      // 하지만 선언 줄에 도착하기 전까지는 사용이 금지된다.
+      // 이 금지 구간을 TDZ(Temporal Dead Zone, 일시적 사각지대)리고 한다.
+
+      // console.log(welcome); // 오류 발생
+      // TDZ 구간
+      const welcome = "반가워";
+
+      console.log("----- 3. 함수 선언문의 호이스팅 -----");
+      // 함수 선언문 : 문장의 시작에 function이 오고 이름이 붙는다.(독립된 문장)
+      // 함수 선언문은 선언부 전체가 끌어올려진다.
+      // 그래서 함수를 아래에 써 놓고 위에서 호출해도 잘 동작한다.
+      sayHello();
+      function sayHello() {
+        console.log("안녕하세요");
+      }
+
+      console.log("----- 4. 함수 표현식은 호이스팅 되지 않는다. -----");
+      // 함수 표현식 : 값이 오는 자리에 놓인 function을 의미
+
+      // sayBye(); 끌어올려지지 않는다.(함수 표현식)
+      const sayBye = function () {
+        console.log("안녕히 가세요.");
+      };
+      sayBye();
+    </script>
+  </body>
+</html>

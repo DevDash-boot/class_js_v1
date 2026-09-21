@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch05 - index04.html</h1>
+    <div>
+      <button id="order-button">주문하기</button>
+    </div>
+    <script>
+      // 1. 함수 선언문과 콜백 함수
+      // 어떤 계산을 할지는 넘겨받은 함수(callback)이 정한다.
+      function calculate(a, b, callback) {
+        console.log("계산을 시작합니다.");
+        const result = callback(a, b);
+        console.log("결과 : " + result);
+      }
+      const add = (x, y) => x + y;
+      const multiply = (x, y) => x * y;
+      calculate(3, 4, add);
+      calculate(3, 4, multiply);
+      // 콜백함수는 함수에 인수로 들어가는 함수를 말한다.
+
+      // 함수를 변수에 담지 않고 바로 그 자리에서 넘겨줘도 된다.(더 많이 사용됨)
+      calculate(10, 2, (x, y) => x - y);
+
+      // 2. 시간이 지나면 실행되는 setTimeout
+      // setTimeout(function () {
+      //   console.log("2초가 지나서 호출됨(콜백 실행)");
+      //   alert("콜백 콜백 콜백");
+      // }, 2000);
+
+      // 3. 사용자가 행동하면 콜백 함수를 실행시킬 수 있다.
+      const orderButton = document.getElementById("order-button");
+      console.log(orderButton);
+      orderButton.addEventListener("click", function () {
+        console.log("주문 버튼이 클릭됨");
+        alert("주문이 접수되었습니다.");
+      });
+    </script>
+  </body>
+</html>

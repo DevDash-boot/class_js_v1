@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch04 - index02.html</h1>
+    <script>
+      const member = {
+        firstName: "길동",
+        lastName: "홍",
+        age: 30,
+        // 1. 중첩 객체
+        // 값 자리에 객체를 넣을 수 있다.(중첩 객체)
+        address: {
+          street: "부산진구 50번길",
+          city: "부산",
+          zip: "456789",
+        },
+        // 2. 값 자리에 배열을 넣을 수 있다.
+        hobbies: ["독서", "등산", "요리", "코딩"],
+
+        // 3. 값 자리에 함수를 넣을 수 있다.(메서드)
+        // 참고. this는 "이 객체 자신"을 가리킨다.
+        introduce: function () {
+          console.log("제 이름은 " + this.lastName + this.firstName + "입니다.");
+        },
+      };
+
+      console.log("----- 4. 중첩된 값 꺼내기 -----");
+      console.log(member.address.city);
+      console.log(member.hobbies[1]);
+
+      console.log("----- 5. 메서드 호출 -----");
+      member.introduce(); // 주의! 메서드 호출 시 반드시 괄호를 사용해야한다.
+      console.log(member.introduce); // 괄호 호출 없이 출력한다면 함수 자체가 출력된다.
+
+      console.log("----- 6. 속성 추가하기 -----");
+      // 없는 키에 값을 넣으면 그게 속성이 된다.(새로 생김)
+      member.email = "a@naver.com";
+      console.log(member.email);
+
+      console.log("----- 7. 속성의 값 수정 -----");
+      member.age = 31; // 수정 가능
+      console.log(member.age);
+
+      console.log("----- 8. 속성 삭제 -----");
+      delete member.zip; // 없는 키를 지워도 에러는 발생하지 않는다.
+      delete member.email;
+      console.log(member.email); // undefined 출력
+      console.log(member); // 전체 확인
+
+      console.log("----- 9. 속성 수정 -----");
+      member.firstName = "티모";
+      console.log(member.firstName);
+      // member 객체 리터럴을 const로 선언해서 상수로 맡들었지만 안에 속성과 값은 변경이 된다.
+      // member 앞에 const는 새로운 객체로 수정 못하게 막는 것이지 안에 속성과 값은 상관 없다.
+      // member = { firstName: "순신" }; // 에러 발생. 새로운 객체를 대입하는 것은 값의 변경이다.
+    </script>
+  </body>
+</html>

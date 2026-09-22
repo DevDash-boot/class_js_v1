@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch07 - index02.html</h1>
+    <script>
+      // 1. boolean이 아닌 값도 조건식에 들어갈 수 있다.
+      if (456) {
+        console.log("456은 참으로 평가된다.");
+      }
+
+      if (undefined) {
+        console.log("이 줄은 실행 안됨");
+      } else {
+        console.log("undefined는 거짓으로 평가된다.");
+      }
+
+      console.log("----- Falsy의 7가지 -----"); // 7가지를 제외하고 모두 Trushy로 평가됨
+      // 2. Falsy 한 값은 딱 7가지이다.
+      let falsy1 = undefined; // 값을 넣지 않은 상태
+      let falsy2 = null; // 일부로 비워둔 상태
+      let falsy3 = 0; // 숫자 0
+      let falsy4 = NaN; // 숫자가 아님
+      let falsy5 = -0; // 음수 0
+      let falsy6 = ""; // 빈 문자열
+      let falsy7 = 0n; // BigInt 타입의 0 의미
+
+      if (!falsy1) console.log("undefined : falsey1");
+      if (!falsy2) console.log("null : falsey2");
+      if (!falsy3) console.log("0 : falsey3");
+      if (!falsy4) console.log("NaN : falsey4");
+      if (!falsy5) console.log("-0 : falsey5");
+      if (!falsy6) console.log("빈 문자열 : falsey6");
+      if (!falsy7) console.log("0n : falsey7");
+
+      console.log("----- Truthy 예시 -----");
+      // 3. Truthy 예시
+      if ("hello") console.log("문자열 : truthy");
+      if (100) console.log("양수 : truthy");
+      if (-5) console.log("음수 : truthy");
+      if ("0") console.log("문자열0 : truthy");
+      if ([]) console.log("빈 배열 : truthy");
+      if ({}) console.log("빈 객체 : truthy");
+
+      // 배열이 비었는지 확인하려면 배열 자체가 아니라 길이로 봐야한다.
+      const cart = [];
+      if (cart.length === 0) console.log("장바구니가 비어있다.");
+
+      // 4. 조건문을 짧게
+      console.log("----- 활용 : 조건문을 짧게 -----");
+      function showWriter1(post) {
+        if (post === undefined || post === null) {
+          console.log("게시글 정보가 없습니다."); // 빠른 평가
+          return;
+        }
+        console.log(post.writer);
+      }
+      showWriter1({ writer: "김민수" });
+      showWriter1(undefined);
+
+      // 5. 주의!
+      console.log("----- 주의! 0과 빈 문자열을 조심해야한다.");
+      function showStock(stock) {
+        if (!stock) {
+          console.log("재고 정보 없음");
+          return;
+        } else {
+          console.log(`재고: ${stock}`);
+        }
+      }
+      showStock(5);
+      showStock(0); // 재고 0을 기대했지만 재고 정보 없음으로 출력됨
+
+      // 방어적 코드
+      function showStockSafe(stock) {
+        if (stock === undefined || stock === null) {
+          console.log("재고 정보 없음");
+          return;
+        } else {
+          console.log(`재고: ${stock}`);
+        }
+      }
+      showStockSafe(0);
+    </script>
+  </body>
+</html>

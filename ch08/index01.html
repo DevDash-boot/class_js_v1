@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch08 - index01.html</h1>
+    <script>
+      const products = [
+        { id: 1, name: "무선 마우스", price: 25000, stock: 3 },
+        { id: 2, name: "기계식 키보드", price: 89000, stock: 0 },
+        { id: 3, name: "모니터 받침대", price: 15000, stock: 12 },
+      ];
+
+      console.log("--- 1. for문으로 반복 ---");
+      for (let i = 0; i < products.length; i++) {
+        console.log(products[i].name);
+      }
+
+      console.log("--- 2. forEach문으로 반복 ---");
+      // 1) forEach문은 안에서 콜백을 부를 때 항상(요소, 인덱스, 배열) 세 개를 순서대로 넘겨준다.
+      // 2) 매개변수를 하나만 적으면 요소만 받고, 2개를 적으면 인덱스까지 받는다.
+      //    이름은 자유, 순서는 고정이다.
+      products.forEach((product) => {
+        console.log(`${product.name}`);
+      });
+
+      console.log("--- 3. forEach문 두 번째 매개변수는 인덱스이다. ---");
+      products.forEach((product, index) => {
+        console.log(`${index + 1} ${product.name}`);
+      });
+
+      console.log("--- 4. forEach문은 돌려주는 값이 없다. ---");
+      const result = products.forEach((p) => p.name);
+      console.log(result); // undefined
+
+      console.log("--- 5. 합계 구하기 ---");
+      let totalStock = 0;
+      products.forEach((p) => {
+        totalStock += p.stock;
+      });
+      console.log("재고 합계 : " + totalStock);
+
+      // 도전과제 1. products 안 price의 합계 금액
+      let total = 0;
+      products.forEach((p) => {
+        total += p.price;
+      });
+      console.log("총 금액 : " + total);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch07 - index03.html</h1>
+    <script>
+      console.log("단락 평가");
+
+      // 1. ||(논리 합)은 왼쪽부터 보다가 Truthy를 만나면 그 값을 돌려주고 멈춘다.
+      console.log("hello" || "world"); // hello
+      console.log("" || "기본값"); // 기본값
+      console.log(null || 0 || "끝"); // 끝
+      console.log(null || undefined); // undefined(논리 합에서 전부 false면 맨 마지막이 출력됨)
+
+      // 2. 활용: 값이 없으면 기본값을 써라를 한 줄로 코드로 작성
+      let nickname = "";
+      let displayName = nickname || "익명";
+      console.log(displayName); // 익명
+
+      // 3. &&(논리 곱)는 왼쪽부터 보다가 Falsy를 만나면 그 값을 돌려주고 멈춘다.
+      console.log("hello" && "world"); // world(마지막인 것)
+      console.log("" && "기본값"); // 빈 줄
+      console.log(null && 0 && "끝"); // null
+      console.log(null && undefined); // null
+    </script>
+  </body>
+</html>

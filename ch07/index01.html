@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch07 - index01.html</h1>
+    <div id="product-box"></div>
+    <script>
+      const productName = "무선 마우스";
+      const price = 25000;
+      const stock = 3;
+
+      // 1. 지금까지의 방식 + 연산자 사용과 이어붙임
+      const message1 = productName + "의 가격은 " + price + "원 이고, 재고는 " + stock + "개 남았습니다.";
+      console.log(message1);
+
+      // 2. 템플릿 리터럴 : 백틱(`)으로 감싸고 변수 자리에 ${}를 쓴다.
+      const message2 = `${productName}의 가격은 ${price}원 이고, 재고는 ${stock}개 남았습니다.`;
+      console.log(message2);
+
+      // 3. ${} 안에는 변수 뿐 아니라 계산식, 함수 호출도 넣을 수 있다.
+      console.log(`총 금액 : ${price * stock} 원`);
+      console.log(`상품명 이름의 길이 : ${productName.length}`);
+
+      // 4. 줄바꿈이 그대로 유지된다.
+      const productHtml = `
+        <div class = "product">
+          <h2>${productName}</h2>
+          <p>가격 : ${price.toLocaleString()} 원</p>
+          <p>재고 : ${stock} 개</p>
+        </div>
+      `;
+      document.getElementById("product-box").innerHTML = productHtml;
+    </script>
+  </body>
+</html>

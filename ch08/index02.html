@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        border: 1px solid blue;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ch08 - index02.html</h1>
+    <div id="product-list"></div>
+    <script>
+      console.log("--- 1. 숫자 배열 변환 ---");
+      const numbers = [1, 2, 3, 4, 5];
+      const doubled = numbers.map((n) => n * 2);
+      console.log(numbers);
+      console.log(doubled);
+
+      // map이 없을 때 (forEach 방법)
+      const n2 = [];
+      numbers.forEach((n) => {
+        n2.push(n * 2);
+      });
+      console.log(n2);
+
+      console.log("--- 2. 객체 배열에서 이름만 뽑기 ---");
+      const products = [
+        { id: 1, name: "무선 마우스", price: 25000, stock: 3 },
+        { id: 2, name: "기계식 키보드", price: 89000, stock: 0 },
+        { id: 3, name: "모니터 받침대", price: 15000, stock: 12 },
+      ];
+      const names = products.map((p) => p.name);
+      console.log(names);
+
+      console.log("--- 3. 객체 배열을 HTML 문자열 배열로 활용 ---");
+      // toLocaleString() 포맷팅 -> 천 단위로 ,가 찍힘 => 25,000
+      const cardList = products.map((p) => {
+        return `
+         <div class="card">
+            <h3>${p.name}</h3> 
+            <p>가격 : ${p.price.toLocaleString()} 원</p> 
+            <p>재고 : ${p.stock} 개</p> 
+         </div>
+        `;
+      });
+      console.log(cardList);
+      document.getElementById("product-list").innerHTML = cardList.join("");
+      // 배열이기 때문에 쉼표가 발생하지만, join("")을 활용하여 쉼표를 없앨 수 있다.
+    </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        border: 2px solid #ccc;
+        padding: 10px;
+        margin: 10px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text" placeholder="상품명 검색" id="search-input" />
+    <span id="count">5개</span>
+
+    <div id="product-list"></div>
+    <div id="detail">상품을 클릭하면 상세 정보가 표시됨</div>
+
+    <script>
+      // 1. 서버에서 데이터를 받았다고 가정(상품 목록)
+      const products = [
+        { id: 1, name: "무선 마우스", price: 25000, stock: 3 },
+        { id: 2, name: "기계식 키보드", price: 89000, stock: 0 },
+        { id: 3, name: "모니터 받침대", price: 15000, stock: 12 },
+        { id: 4, name: "버티컬 마우스", price: 42000, stock: 5 },
+        { id: 5, name: "무선 키보드", price: 56000, stock: 0 },
+      ];
+
+      // 준비물
+      const searchInput = document.getElementById("search-input");
+      const productList = document.getElementById("product-list");
+      const countSpan = document.getElementById("count");
+      const detail = document.getElementById("detail");
+
+      // 2. 상품 하나를 카드 HTMl로 바꾸는 함수
+      function makeCard(product) {
+        return `
+         <div class="card">
+            <strong>${product.name}</strong> - ${product.price.toLocaleString()} 원 (${product.stock}개)
+         </div>
+        `;
+      }
+
+      // 3. 검색어에 맞는 상품만 골라서 화면에 그리는 함수
+      function render(keyword) {
+        // filter : 이름에 검색어가 포함된 것만
+        const matched = products.filter((p) => {
+          return p.name.includes(keyword);
+        });
+        productList.innerHTML = matched.map(makeCard).join("");
+
+        // 결과가 없을 때
+        if (matched.length === 0) {
+          productList.innerHTML = `<p>${keyword}에 해당하는 상품이 없습니다.</p>`;
+        }
+        countSpan.textContent = `${matched.length}개`;
+      }
+      render("");
+
+      searchInput.addEventListener("input", () => {
+        render(event.currentTarget.value);
+      });
+    </script>
+  </body>
+</html>

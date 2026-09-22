@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        border: 1px solid blue;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ch08 - index03.html</h1>
+    <div id="product-list"></div>
+    <script>
+      console.log("--- 1. 숫자 배열에서 짝수만 ---");
+      const numbers = [1, 2, 3, 4, 5];
+      const evens = numbers.filter((n) => n % 2 === 0);
+      console.log(evens);
+
+      console.log("--- 2. 객체 배열에서 재고만 있는 상품 ---");
+      const products = [
+        { id: 1, name: "무선 마우스", price: 25000, stock: 3 },
+        { id: 2, name: "기계식 키보드", price: 89000, stock: 0 },
+        { id: 3, name: "모니터 받침대", price: 15000, stock: 12 },
+      ];
+      const isStock = products.filter((p) => p.stock > 0);
+      console.log(isStock);
+
+      console.log("--- 3. 객체 배열에서 조건을 여러 개 걸기 ---");
+      const cheapMouse = products.filter((p) => p.stock > 0 && p.price > 20000);
+      console.log(cheapMouse);
+
+      console.log("--- 4. filter와 map 이어쓰기 ---");
+      const cardList = products
+        .filter((p) => p.stock > 0)
+        .map((p) => {
+          return `
+         <div class="card">
+            <h3>${p.name}</h3> 
+            <p>가격 : ${p.price.toLocaleString()} 원</p> 
+            <p>재고 : ${p.stock} 개</p> 
+         </div>
+        `;
+        });
+      console.log(cardList);
+      document.getElementById("product-list").innerHTML = cardList.join("");
+      // 배열이기 때문에 쉼표가 발생하지만, join("")을 활용하여 쉼표를 없앨 수 있다.
+    </script>
+  </body>
+</html>

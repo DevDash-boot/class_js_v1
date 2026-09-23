@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch12 - index03.html</h1>
+    <button id="myButton">클릭</button>
+    <script>
+      const buttonEl = document.querySelector("#myButton");
+
+      // 1. 첫 번째 핸들러 등록
+      buttonEl.addEventListener("click", function () {
+        alert("첫 번째 핸들러");
+      });
+
+      // 2. 두 번째 핸들러 등록
+      buttonEl.addEventListener("click", function () {
+        alert("두 번째 핸들러");
+      });
+
+      // 버튼을 누르면 등록한 순서대로 핸들러가 모두 실행된다.
+    </script>
+  </body>
+</html>

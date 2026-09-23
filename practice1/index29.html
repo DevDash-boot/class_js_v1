@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>9/22 ~ 9/23 연습</h1>
+    <h2>아이템 추가 + 삭제</h2>
+    <button id="addBtn">추가</button>
+    <button id="deleteBtn">삭제</button>
+    <div id="total"></div>
+    <script>
+      const deleteBtn = document.getElementById("deleteBtn");
+      const total = document.getElementById("total");
+      let count = 0;
+      const addBtn = document.getElementById("addBtn").addEventListener("click", () => {
+        const newItem = document.createElement("div");
+        count++;
+        newItem.textContent = `아이템${count}`;
+        newItem.classList.add("item");
+        total.append(newItem);
+      });
+
+      deleteBtn.addEventListener("click", () => {
+        const removeBox = total.lastElementChild;
+
+        if (removeBox) {
+          removeBox.remove();
+        }
+      });
+    </script>
+  </body>
+</html>

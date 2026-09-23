@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>9/22 ~ 9/23 연습</h1>
+    <h2>동적으로 박스 만들기</h2>
+    <div id="total"></div>
+    <script>
+      const total = document.getElementById("total");
+      const newBox = document.createElement("div");
+      newBox.textContent = "아이템1";
+      newBox.classList.add("box");
+      total.append(newBox);
+    </script>
+  </body>
+</html>

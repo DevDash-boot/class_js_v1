@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>9/22 ~ 9/23 연습</h1>
+    <h2>클릭할 때마다 숨김/보이기</h2>
+    <div id="box">숨겨질 박스</div>
+    <button id="btn">토글</button>
+    <script>
+      const box = document.getElementById("box");
+      const btn = document.getElementById("btn");
+
+      btn.addEventListener("click", () => {
+        box.classList.toggle("hide");
+      });
+    </script>
+  </body>
+</html>

@@ -6,9 +6,21 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>ch06 - index01.html</h1>
+    <h1>ch09 - index01.html</h1>
+    <p>첫 번째 문단</p>
+    <p>두 번째 문단</p>
     <script>
-      console.log();
+      // 1. document는 DOM 트리의 뿌리이다.
+      // window.document에서 window는 생략할 수 있다.
+      console.log(document); // 콘솔에 HTML 전체가 트리 모양으로 확인
+      console.log(document.body); // body가 트리 모양으로 확인
+
+      // 2. 트리는 부모와 자식 관계로 이어져 있다.
+      console.log(document.body.children);
+      console.log(document.body.children[0]); // h1 요소
+
+      // 3. 자바 스크립트로 DOM을 바꾸면 화면이 바로 바뀐다.
+      document.body.children[1].textContent = "자바스크립트가 바꾼 문단";
     </script>
   </body>
 </html>

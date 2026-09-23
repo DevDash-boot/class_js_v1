@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch10 - index03.html</h1>
+    <button id="assign-btn">assign 버튼</button>
+    <button id="reload-btn">reload 버튼</button>
+    <button id="replace-btn">replace 버튼</button>
+    <p id="info">정보 표시</p>
+    <script>
+      console.log("1. URL의 값 부분 읽기");
+      console.log(window.location.href); // 전체 주소 정보
+      console.log(window.location.protocol); // 통신 규약
+      console.log(window.location.host); // 도메인과 포트
+      console.log(window.location.pathname); // 도메인 뒤의 경로
+      console.log(window.location.search); // ? 뒤의 쿼리 문자열
+
+      const params = new URLSearchParams(location.search);
+      const page = params.get("page");
+      const keyword = params.get("keyword");
+      console.log(page);
+      console.log(keyword);
+      // http://localhost:5500/ch10/index03.html?page=10&keyword=js
+
+      document.getElementById("assign-btn").addEventListener("click", function () {
+        window.location.assign("index04.html");
+      });
+
+      document.getElementById("reload-btn").addEventListener("click", function () {
+        window.location.reload(); // 새로고침
+      });
+
+      document.getElementById("replace-btn").addEventListener("click", function () {
+        window.location.replace("index04.html"); // 페이지 이동(방문 기록을 남기지 않음)
+      });
+    </script>
+  </body>
+</html>

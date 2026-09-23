@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>9/22 ~ 9/23 연습</h1>
+    <h2>filter</h2>
+    <script>
+      const products = [
+        { name: "마우스", price: 25000, stock: 3 },
+        { name: "키보드", price: 89000, stock: 0 },
+        { name: "USB", price: 5000, stock: 10 },
+        { name: "헤드셋", price: 65000, stock: 2 },
+      ];
+      const r = products.filter((p) => p.stock > 0 && p.price <= 70000);
+      console.log(r);
+    </script>
+  </body>
+</html>

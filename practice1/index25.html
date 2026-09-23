@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .highlight {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>9/22 ~ 9/23 연습</h1>
+    <h2>클릭하면 클래스 추가</h2>
+    <div id="box">박스</div>
+    <button id="btn">강조</button>
+    <script>
+      const box = document.getElementById("box");
+      const btn = document.getElementById("btn");
+
+      btn.addEventListener("click", () => {
+        box.classList.add("highlight");
+      });
+    </script>
+  </body>
+</html>

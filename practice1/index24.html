@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>9/22 ~ 9/23 연습</h1>
+    <h2>클릭하면 글자 변경</h2>
+    <h1 id="title">변경 전</h1>
+    <button id="btn">변경</button>
+    <script>
+      const title = document.getElementById("title");
+      const btn = document.getElementById("btn");
+
+      btn.addEventListener("click", () => {
+        title.textContent = "변경 후";
+      });
+    </script>
+  </body>
+</html>

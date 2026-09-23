@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>상품 목록</title>
+  </head>
+  <body>
+    <h1>9/22 ~ 9/23 연습</h1>
+    <h2>통합문제</h2>
+    <h1>상품 목록</h1>
+    <div id="product-list"></div>
+
+    <script>
+      const products = [
+        { name: "무선 마우스", price: 25000, stock: 3 },
+        { name: "기계식 키보드", price: 89000, stock: 0 },
+        { name: "USB 허브", price: 15000, stock: 5 },
+      ];
+
+      const productList = document.getElementById("product-list");
+
+      products.forEach((product) => {
+        const card = document.createElement("div");
+
+        const name = document.createElement("h3");
+        name.textContent = product.name;
+
+        const price = document.createElement("p");
+        price.textContent = `가격 : ${product.price}원`;
+
+        const stock = document.createElement("p");
+        stock.textContent = product.stock > 0 ? `재고 : ${product.stock}개` : "품절";
+
+        card.append(name);
+        card.append(price);
+        card.append(stock);
+
+        productList.append(card);
+      });
+    </script>
+  </body>
+</html>

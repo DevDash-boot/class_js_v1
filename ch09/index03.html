@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch09 - index03.html</h1>
+    <ul id="fruit-list">
+      <li class="fruit">사과</li>
+      <li class="fruit">바나나</li>
+    </ul>
+
+    <script>
+      // 1. 같은 요소들을 두 가지 방법으로 찾아보기
+      const liveList = document.getElementsByClassName("fruit"); // HTMLCollection
+      const staticList = document.querySelectorAll(".fruit"); // NodeList
+      console.log(liveList.length); // 2
+      console.log(staticList.length); // 2
+
+      // 2. 새 요소를 하나 추가하기
+      const newFruit = document.createElement("li");
+      // console.log(newFruit);
+      newFruit.className = "fruit";
+      newFruit.textContent = "포도";
+      // 추가할 때는 .append() 사용
+      document.getElementById("fruit-list").append(newFruit);
+
+      // 3. 추가한 뒤 두 결과의 개수를 다시 확인
+      console.log(liveList.length); // 3 : 추가된 것이 바로 반영
+      console.log(staticList.length); // 2 : 찍은 시점 그대로
+
+      // 4. 동적으로 요소를 추가한 뒤 다시 길이를 확인하면 반영된다.
+      console.log(document.querySelectorAll(".fruit").length); // 3
+    </script>
+  </body>
+</html>

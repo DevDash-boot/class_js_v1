@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch10 - index01.html</h1>
+    <div id="info">정보 표시 영역</div>
+    <script>
+      console.log(window);
+      console.log(window.document === document); // true
+
+      // var로 선언한 변수와 함수 선언문은 window 속성이 된다.
+      var oldVariable = "var로 만든 변수";
+      function oldFunction() {}
+      console.log(window.oldVariable); // 출력
+      console.log(window.oldFunction); // f oldFunction(){} 출력
+      // let과 const로 선언한 변수는 window 속성이 되지 않는다.
+      // 전역에서 선언할 수 있지만 window에 매달리지 않는다.
+      let newVariable = "let으로 만든 변수";
+      console.log(newVariable); // 출력
+      console.log(window.newVariable); // undefined
+    </script>
+  </body>
+</html>

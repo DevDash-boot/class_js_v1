@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // 1. DOMContentLoaded : HTML 파싱이 끝나 DOM 이 완성되면 발생
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("title").textContent = "DOM 완성 후 동작";
+        // 이미지는 아직 완성이 안될 수 도 있다 (통신)
+      });
+      // 2. load : 이미지, css 등 모든 자원을 내려 받은 뒤 발생
+      // DOMContentLoaded 보다 늦다.
+      document.addEventListener("load", () => {
+        document.getElementById("title").textContent = "DOM 완성 후 동작";
+      });
+    </script>
+  </head>
+  <body>
+    <h1 id="title">ch11 - index04.html</h1>
+    <p>이 문단이 보이면 body영역 파싱이 끝난 것이다.</p>
+  </body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .total {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .box {
+        background-color: aqua;
+        width: 100px;
+        height: 100px;
+        padding: 10px;
+        margin: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ch12 - index05.html - 요소 동적 추가</h1>
+    <button id="btn1">아이템 추가</button>
+    <button id="btn2">아이템 삭제</button>
+    <button id="btn3">아이템 노랑</button>
+    <button id="btn4">아이템 수정</button>
+    <div class="total" id="total">
+      <div id="box1" class="box">아이템1</div>
+      <div id="box2" class="box">아이템2</div>
+      <div id="box3" class="box">아이템3</div>
+    </div>
+    <script>
+      // 1. 요소 찾기
+      const btn1 = document.getElementById("btn1");
+      const btn2 = document.getElementById("btn2");
+      const btn3 = document.getElementById("btn3");
+      const btn4 = document.getElementById("btn4");
+      const box1 = document.getElementById("box1");
+      const box2 = document.getElementById("box2");
+      const box3 = document.getElementById("box3");
+      const total = document.getElementById("total");
+      const box = document.querySelectorAll(".box");
+
+      const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+      document.documentElement.style.setProperty("--random-color", randomColor);
+
+      let boxArray = [];
+      boxArray.push(box1);
+      boxArray.push(box2);
+      boxArray.push(box3);
+      console.log(boxArray);
+      // 2. 추가
+      let count = 3;
+      btn1.addEventListener("click", () => {
+        count++;
+        const newBox = document.createElement("div");
+        newBox.textContent = `아이템${count}`;
+        newBox.id = `box${count}`;
+        newBox.classList.add("box");
+        total.append(newBox);
+        boxArray.push(newBox);
+      });
+
+      // 3. 삭제
+      btn2.addEventListener("click", () => {
+        const removeBox = total.lastElementChild;
+        if (removeBox) {
+          removeBox.remove();
+          boxArray.pop();
+          count--;
+        }
+      });
+
+      // 4. 노랑색 박스 추가
+      btn3.addEventListener("click", () => {
+        count++;
+        const newBox = document.createElement("div");
+        newBox.textContent = `아이템 ${count}`;
+        newBox.classList.add("box");
+        newBox.id = `box${count}`;
+        newBox.style.background = "yellow";
+        total.append(newBox);
+        boxArray.push(newBox);
+      });
+
+      // 5. 수정
+      btn4.addEventListener("click", () => {
+        boxArray.forEach((b) => {
+          const id = Number(b.id.replace("box", ""));
+          if (id % 2 === 0) {
+            b.style.backgroundColor = "#ccc";
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

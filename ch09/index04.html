@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .highlight {
+        background-color: yellow;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ch09 - index04.html</h1>
+    <h2 id="title">Hello, World</h2>
+    <p id="message">원래 문장</p>
+    <button id="change-btn">내용 변경</button>
+    <button id="class-btn">강조 토글</button>
+    <button id="create-btn">요소 생성</button>
+    <button id="remove-btn">마지막 요소 삭제</button>
+
+    <div id="box"></div>
+    <script>
+      // 1. 조작할 요소를 미리 찾아서 변수에 담아둔다.
+      const titleEl = document.getElementById("title");
+      const messageEl = document.getElementById("message");
+      const boxEl = document.getElementById("box");
+
+      // 2. 내용 바꾸기 : textContent vs innerHtml
+      document.getElementById("change-btn").addEventListener("click", function () {
+        // textContent는 글자만 넣는다. 태그를 넣어도 글자 그대로 보인다.
+        titleEl.textContent = "<li>안녕 자바스크립트</li>";
+        // innerHTML은 html로 해석한다. 태그가 진짜 태그가 된다.(strong)
+        messageEl.innerHTML = "이 문장은 <strong>굵은 글자</strong>를 포함한다.";
+        // style로 css 속성을 직접 바꿀수도 있다.
+        titleEl.style.color = "blue";
+        titleEl.style.fontSize = "32px";
+      });
+
+      // 3. 클래스 바꾸기 : classList
+      document.getElementById("class-btn").addEventListener("click", function () {
+        messageEl.classList.toggle("highlight");
+      });
+
+      // 4. 요소를 만들어서 붙이기
+      document.getElementById("create-btn").addEventListener("click", function () {
+        // 만들기 -> 내용 채우기 -> 부모에 붙이기
+        const newItem = document.createElement("div");
+
+        newItem.textContent = "동적으로 생성된 div";
+        newItem.style.marginTop = "8px";
+        newItem.style.padding = "8px";
+        newItem.style.backgroundColor = "lightblue";
+
+        boxEl.append(newItem);
+      });
+
+      // 5. 요소 지우기
+      document.getElementById("remove-btn").addEventListener("click", function () {
+        const lastItem = boxEl.lastElementChild; // box의 마지막 자식을 찾아줌
+        if (lastItem) {
+          lastItem.remove(); // 요소 자신을 DOM에서 제거
+        }
+      });
+    </script>
+  </body>
+</html>

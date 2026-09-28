@@ -121,7 +121,54 @@
     </div>
 
     <script>
-      // 여기에 JavaScript 작성
+      const todoForm = document.querySelector("#todoForm");
+      const todoInput = document.querySelector("#todoInput");
+      const todoList = document.querySelector("#todoList");
+      const count = document.querySelector("#count");
+      const banner = document.querySelector(".banner");
+      const bannerText = document.querySelector("#bannerText");
+
+      // 할 일 추가하기
+      todoForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const todoText = todoInput.value.trim();
+        if (todoText === "") return;
+        const newItem = document.createElement("li");
+        newItem.innerHTML = `<span>${todoText}</span><button class="delete">삭제</button>`;
+        todoList.append(newItem);
+        todoInput.value = "";
+        count.textContent = todoList.children.length;
+      });
+
+      // 할 일 삭제 + 완료 처리
+      todoList.addEventListener("click", (e) => {
+        const li = e.target.closest("li");
+        if (e.target.classList.contains("delete")) {
+          li.remove();
+        } else {
+          li.classList.toggle("done");
+        }
+        count.textContent = todoList.children.length;
+      });
+
+      // 배너 변경
+      const messages = [
+        "오늘도 힘내세요!",
+        "조금씩 꾸준히 해봅시다!",
+        "JavaScript 공부 중!",
+        "오늘의 목표를 달성해봅시다!",
+      ];
+      let index = 0;
+
+      setInterval(() => {
+        index++;
+        if (index >= messages.length) index = 0;
+        bannerText.textContent = messages[index];
+        banner.classList.remove("active");
+        setTimeout(() => {
+          banner.classList.add("active");
+        }, 10);
+      }, 3000);
     </script>
   </body>
 </html>

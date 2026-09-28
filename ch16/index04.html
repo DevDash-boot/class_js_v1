@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 17</title>
+    <link rel="stylesheet" href="../reset.css" />
+    <style>
+      /* 1단계 : 리셋 + 전역 스타일 */
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #333;
+        padding: 20px;
+      }
+
+      /* 2단계 : 레이아웃 (큰 틀 배치) */
+      .banner-container {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        max-width: 600px;
+        margin: 50px auto;
+      }
+
+      /* 창문: 이미지 한 장 크기만 보이고 나머지는 잘라낸다. 겹치지 않으므로 position 은 필요 없다 */
+      .image-wrapper {
+        flex: 1;
+        height: 200px;
+        overflow: hidden;
+      }
+
+      /* 필름: 이미지를 가로로 한 줄로 나열한다. 이 요소를 좌우로 민다 */
+      .track {
+        display: flex;
+        height: 100%;
+      }
+
+      /* 이미지는 각각 창문 너비만큼 차지한다. flex-shrink: 0 이 없으면 7장이 창문 안에 줄어들어 들어간다 */
+      .track img {
+        width: 100%;
+        height: 100%;
+        flex-shrink: 0;
+        object-fit: cover;
+      }
+
+      /* 3단계 컴포넌트 스타일 */
+      .banner-container {
+        border: 2px solid black;
+      }
+
+      .control-btn {
+        padding: 20px;
+        background: none;
+        border: none;
+        font-size: 20px;
+      }
+
+      /* 4단계 세부 조정 */
+      /* 필름이 밀릴 때 0.5초에 걸쳐 움직인다. 페이드의 opacity 대신 transform 이 대상 */
+      .track {
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .control-btn {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+      .control-btn:hover {
+        transform: scale(1.3);
+      }
+
+      /* 5단계 반응형 처리 */
+    </style>
+  </head>
+  <body>
+    <h1>ch16 index02.html - 배너 변경 (슬라이드)</h1>
+
+    <div class="banner-container">
+      <button class="control-btn prev-btn">&lt;</button>
+
+      <div class="image-wrapper">
+        <div class="track">
+          <img src="https://picsum.photos/id/20/400/300" alt="배너 1" />
+          <img src="https://picsum.photos/id/30/400/300" alt="배너 2" />
+          <img src="https://picsum.photos/id/42/400/300" alt="배너 3" />
+          <img src="https://picsum.photos/id/50/400/300" alt="배너 4" />
+          <img src="https://picsum.photos/id/60/400/300" alt="배너 5" />
+          <img src="https://picsum.photos/id/70/400/300" alt="배너 6" />
+          <img src="https://picsum.photos/id/80/400/300" alt="배너 7" />
+        </div>
+      </div>
+
+      <button class="control-btn next-btn">&gt;</button>
+    </div>
+
+    <script>
+      const prevButton = document.querySelector(".prev-btn");
+      const nextButton = document.querySelector(".next-btn");
+      const track = document.querySelector(".track");
+      const bannerContainer = document.querySelector(".banner-container");
+
+      // 상태 변수: 현재 보이는 이미지의 인덱스. 화면은 항상 이 값을 따라간다
+      let currentIndex = 0;
+      const imageCount = track.children.length; // 7
+      let timerId = null;
+
+      function startAutoSlide() {
+        // 이미 돌고 있으면 또 만들지 않는다. 타이머가 두 개면 속도가 두 배가 된다
+        if (timerId !== null) {
+          return;
+        }
+        timerId = setInterval(() => {
+          updateBanner((currentIndex + 1) % imageCount);
+        }, 3000);
+      }
+
+      function stopAutoSlide() {
+        clearInterval(timerId);
+        timerId = null;
+      }
+
+      bannerContainer.addEventListener("mouseenter", stopAutoSlide);
+      bannerContainer.addEventListener("mouseleave", startAutoSlide);
+
+      // 1. 이전 버튼: 나머지 연산으로 순환
+      prevButton.addEventListener("click", () => {
+        updateBanner((currentIndex - 1 + imageCount) % imageCount);
+      });
+
+      // 2. 다음 버튼
+      nextButton.addEventListener("click", () => {
+        updateBanner((currentIndex + 1) % imageCount);
+      });
+
+      // 3. 화면 갱신: active 클래스를 옮기는 대신 필름(track)을 왼쪽으로 민다
+      function updateBanner(newIndex) {
+        currentIndex = newIndex;
+
+        // 이미지 한 장의 너비가 100% 이므로, 인덱스 x 100% 만큼 왼쪽으로 밀면 그 이미지가 창문에 온다
+        // 0 -> translateX(-0%), 1 -> translateX(-100%), ... 6 -> translateX(-600%)
+        track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      }
+
+      startAutoSlide();
+    </script>
+  </body>
+</html>

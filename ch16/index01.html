@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css" />
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #333;
+        padding: 20px;
+      }
+      .banner-container {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        max-width: 600px;
+        margin: 50px auto;
+      }
+      .image-wrapper {
+        flex: 1;
+        height: 200px;
+        /* 자식 image의 position : absolute 기준점이 된다.
+        이게 없으면 img가 body 기준으로 놓여 배너 밖으로 튀어나간다. */
+        position: relative;
+        /* 영역 밖으로 나온 부분은 잘라서 보이지 않게 한다. */
+        overflow: hidden;
+      }
+      .image-wrapper img {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      /* 3단계 컴포넌트 스타일 */
+      .banner-container {
+        border: 2px solid black;
+      }
+      .control-btn {
+        padding: 20px;
+        background: none;
+        border: none;
+        font-size: 20px;
+      }
+      /* 4단계 세부조정 */
+      .image-wrapper img {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.5s ease-in-out;
+      }
+      .image-wrapper img.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .control-btn {
+        cursor: pointer;
+        transition: transform 0.2s ease;
+      }
+      .control-btn:hover {
+        transform: scale(1.3);
+      }
+      /* 5단계 반응형 처리 */
+    </style>
+  </head>
+  <body>
+    <h1>ch16 - index01.html</h1>
+    <div class="banner-container">
+      <button class="control-btn prev-btn">&lt;</button>
+      <div class="image-wrapper">
+        <img class="active" src="https://picsum.photos/id/20/400/300" alt="" />
+        <img src="https://picsum.photos/id/30/400/300" alt="" />
+        <img src="https://picsum.photos/id/40/400/300" alt="" />
+      </div>
+      <button class="control-btn next-btn">&gt;</button>
+      <script>
+        const prevButton = document.querySelector(".prev-btn");
+        const nextButton = document.querySelector(".next-btn");
+        const imageList = document.querySelectorAll(".image-wrapper img");
+
+        // 상태 변수 : 현재 보이는 이미지의 인덱스, 화면은 항상 이 값을 따라간다.
+        let currentIndex = 0;
+        const imageCount = imageList.length; // 3
+
+        // currentIndex가 0, 1, 2 일 때
+        // 이전 : (0 - 1 + 3) % 3 = 2, (1 - 1 + 3) % 3 = 0, (2 - 1 + 3) % 3 = 1
+        // 다음 : (0 + 1) % 3 = 1, (0 + 2) % 3 = 2, (0 + 3) % 3 = 0
+        // 1. 이전 버튼 리스너 등록
+        prevButton.addEventListener("click", () => {
+          let newIndex = (currentIndex - 1 + imageCount) % imageCount;
+          updateBanner(newIndex);
+        });
+
+        // 2. 다음 버튼 리스너 등록
+        nextButton.addEventListener("click", () => {
+          let newIndex = (currentIndex + 1) % imageCount;
+          updateBanner(newIndex);
+        });
+
+        // 화면 갱신은 이 함수가 처리하고 버튼의 인덱스만 계산한다.
+        function updateBanner(newIndex) {
+          // 화면 갱신
+          // 1. 현재 활성화된 img에서 activce 클래스를 빼서 숨긴다.
+          imageList[currentIndex].classList.remove("active");
+
+          // 2. 상태 변수를 새 인덱스 번호로 교체한다.
+          currentIndex = newIndex;
+
+          // 새 인덱스의 img에 active클래스를 붙여 보이게한다.
+          imageList[currentIndex].classList.add("active");
+        }
+      </script>
+    </div>
+  </body>
+</html>

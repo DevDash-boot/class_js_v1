@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 이벤트 처리 연습 -->
+    <title>Todo App</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        padding: 50px;
+        background: #f5f5f5;
+      }
+
+      .container {
+        width: 500px;
+        margin: 0 auto;
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .banner {
+        padding: 20px;
+        margin: 20px 0;
+        background: #eee;
+        text-align: center;
+        border-radius: 10px;
+      }
+
+      .banner.active {
+        animation: fade 0.5s;
+      }
+
+      @keyframes fade {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      form {
+        display: flex;
+        gap: 10px;
+      }
+
+      input {
+        flex: 1;
+        padding: 10px;
+      }
+
+      button {
+        cursor: pointer;
+        padding: 8px 12px;
+      }
+
+      ul {
+        padding: 0;
+        list-style: none;
+      }
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px;
+        margin-top: 8px;
+        background: #f0f0f0;
+        border-radius: 8px;
+      }
+
+      li.done {
+        text-decoration: line-through;
+        opacity: 0.5;
+      }
+
+      .count {
+        text-align: right;
+        margin-top: 15px;
+        color: #666;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>오늘의 할 일</h1>
+
+      <div class="banner">
+        <span id="bannerText">오늘도 힘내세요!</span>
+      </div>
+
+      <form id="todoForm">
+        <input type="text" id="todoInput" placeholder="할 일을 입력하세요" />
+        <button type="submit">추가</button>
+      </form>
+
+      <ul id="todoList">
+        <li>
+          <span>JavaScript 공부</span>
+          <button class="delete">삭제</button>
+        </li>
+
+        <li>
+          <span>운동하기</span>
+          <button class="delete">삭제</button>
+        </li>
+      </ul>
+
+      <div class="count"><span id="count">2</span>개의 할 일</div>
+    </div>
+
+    <script>
+      // 여기에 JavaScript 작성
+    </script>
+  </body>
+</html>

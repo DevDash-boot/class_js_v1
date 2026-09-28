@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        padding: 20px;
+      }
+      ul {
+        list-style: none;
+        margin-top: 20px;
+        width: 300px;
+      }
+      li {
+        background-color: rgb(158, 208, 252);
+        border: 1px solid black;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      button {
+        padding: 5px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ch13 - index03.html</h1>
+    <button id="btnAdd">새 아이템 추가</button>
+    <ul id="itemList">
+      <li>기존 아이템 1 <button class="delete-btn">삭제</button></li>
+      <li>기존 아이템 2 <button class="delete-btn">삭제</button></li>
+      <li>기존 아이템 3 <button class="delete-btn">삭제</button></li>
+    </ul>
+    <script>
+      // 페이지가 로드된 시점에는 존재하는 버튼이 현재 3개(NodeList)
+      const deleteBtnList = document.querySelectorAll(".delete-btn");
+      const btnAddEl = document.querySelector("#btnAdd");
+      const itemListEl = document.querySelector("#itemList");
+
+      // 문제의 원인 (동적 요소 생성 시)
+      deleteBtnList.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          // 버튼의 부모 요소에 접근해서 li를 삭제한다.
+          btn.parentElement.remove();
+        });
+      });
+
+      btnAddEl.addEventListener("click", () => {
+        const currentCount = itemListEl.children.length;
+
+        const newItem = document.createElement("li");
+        newItem.innerHTML = `기존 아이템 ${currentCount + 1} <button class="delete-btn">삭제</button>`;
+        itemListEl.append(newItem);
+      });
+    </script>
+  </body>
+</html>

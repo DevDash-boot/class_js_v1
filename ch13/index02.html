@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #parent {
+        padding: 50px;
+        background-color: aquamarine;
+        border: 3px solid black;
+        text-align: center;
+      }
+      #child {
+        background-color: bisque;
+        padding: 15px 30px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ch13 - index02.html</h1>
+    <div id="parent">
+      이곳은 넓은 부모 영역입니다.
+      <br />
+      <button id="child">자식 버튼</button>
+    </div>
+    <script>
+      const parent = document.getElementById("parent");
+      const child = document.getElementById("child");
+
+      // 부모 영역 하나에만 리스너를 등록한다.
+      parent.addEventListener("click", (e) => {
+        alert("부모 영역이 클릭되었습니다.");
+      });
+
+      child.addEventListener("click", (e) => {
+        event.stopPropagation(); // 전달 끊기. 부모의 핸들러는 실행 안됨
+        alert("자식 버튼이 클릭되었습니다.");
+      });
+    </script>
+  </body>
+</html>

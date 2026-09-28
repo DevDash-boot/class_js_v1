@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 50px;
+        align-items: center;
+      }
+      .heart-container {
+        display: flex;
+        gap: 30px;
+      }
+      .like-heart {
+        font-size: 40px;
+        cursor: pointer;
+        /* 애니메이션 설정 : 속성명 지속시간 속도곡선 */
+        transition:
+          color 0.5s ease,
+          transform 0.5s ease;
+      }
+      .liked {
+        color: red;
+        transform: scale(1.5);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ch15 - index01.html</h1>
+    <div class="heart-container">
+      <div class="like-heart">&#9825;</div>
+      <div class="like-heart">&#9825;</div>
+      <div class="like-heart">&#9825;</div>
+    </div>
+    <script>
+      const container = document.querySelector(".heart-container");
+      // 이벤트 위임 : 하트 세 개에 각각 이벤트 리스너를 달지 않고 부모 하나만 단다.
+      container.addEventListener("click", (event) => {
+        // 하트가 아닌 빈 공간을 클릭하면(부모 영역 중) 자기 자신이 되므로 걸러줘야한다.
+        if (!event.target.classList.contains("like-heart")) {
+          return;
+        }
+        // liked가 있으면 제거, 없으면 추가 : 반환값은 true/false
+        const isLiked = event.target.classList.toggle("liked");
+        event.target.textContent = isLiked ? "♥" : "♡";
+        console.log(isLiked ? "좋아요" : "좋아요 취소");
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../reset.css" />
+    <style>
+      body {
+        padding: 20px;
+      }
+      form {
+        padding: 15px;
+        border: 1px solid #ccc;
+        width: 300px;
+        margin-top: 20px;
+      }
+      input {
+        display: block;
+        width: 90%;
+        margin: 10px;
+        padding: 5px;
+      }
+      .help {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      button {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ch14 - index01.html</h1>
+    <form action="https://www.naver.com" method="get">
+      <input type="text" name="userName" value="홍길동" placeholder="이름" />
+      <input type="text" name="userTel" value="010-1234-1234" placeholder="연락처(010-1234-1234)" />
+      <span class="help" id="telHelp"></span>
+      <button type="submit">제출</button>
+    </form>
+    <script>
+      const formEl = document.forms[0];
+
+      // formEl.elements["속성값"]; 으로 입력란을 찾을 수 있다.
+      const nameInput = formEl.elements["userName"];
+      const telInput = formEl.elements["userTel"];
+      const telHelp = document.getElementById("telHelp");
+
+      // 정규식 리터럴이고, 이렇게 사용하면 js가 Regex라는 객체를 만들어준다.
+      const telPattern = /^010-?\d{4}-?\d{4}$/;
+
+      formEl.addEventListener("submit", (e) => {
+        event.preventDefault(); // 브라우저야 잠깐 멈춰
+        // stopProagation() : 이벤트를 위로 올려 보내지 마
+        // preventDefault() : 브라우저에게 원래 하던 일을 하지 마
+
+        // 이름 유효성 검사
+        if (nameInput.value.trim() === "") {
+          alert("이름을 입력해주세요.");
+          nameInput.focus();
+          return;
+        }
+        // 전화번호 유효성 검사
+        if (!telPattern.test(telInput.value.trim())) {
+          alert("연락처 형식이 올바르지 않습니다.");
+          telInput.focus();
+          return;
+        }
+
+        // 통과 후 FormData로 입력값을 한 번에 모아서 직접 서버로 제출
+        const data = Object.fromEntries(new FormData(formEl));
+        console.log(data);
+
+        // 실제 서버에 제출
+        formEl.submit();
+      });
+      // 입력하는 동안 바로 안내 : input 이벤트는 글자를 칠 때마다 이벤트가 일어난다.
+      telInput.addEventListener("input", () => {
+        if (telPattern.test(telInput.value)) {
+          telHelp.textContent = "올바른 형식입니다.";
+          telHelp.style.color = "green";
+        } else {
+          telHelp.textContent = "010-1234-1234 형식이어야 합니다.";
+          telHelp.style.color = "red";
+        }
+      });
+    </script>
+  </body>
+</html>

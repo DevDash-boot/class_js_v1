@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        padding: 20px;
+        background-color: white;
+        color: #222;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease;
+      }
+      /* 복합 선택자 (and 조건) */
+      body.dark {
+        background-color: #222;
+        color: #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ch15 - index02.html</h1>
+    <button id="themeBtn">다크 모드</button>
+    <p>본문 내용입니다. 버튼을 누르면 배경과 글자색이 바뀝니다.</p>
+    <script>
+      const themeBtnEl = document.getElementById("themeBtn");
+      // 1. 페이지를 열 때 저장된 설정을 읽어 적용한다.
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark");
+        themeBtnEl.textContent = "라이트 모드";
+      }
+
+      // 2. 이벤트 리스너 등록 및 핸들러 처리
+      themeBtnEl.addEventListener("click", () => {
+        const isDark = document.body.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        themeBtnEl.textContent = isDark ? "라이트 모드" : "다크 모드";
+      });
+    </script>
+  </body>
+</html>

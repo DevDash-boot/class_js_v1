@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>날씨 앱</title>
+    <link rel="stylesheet" href="weather.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header class="header">
+        <div>
+          <div class="logo">☁️ Weather</div>
+          <p>현재 날씨와 5일간의 날씨를 확인하세요.</p>
+        </div>
+      </header>
+      <section class="search-box">
+        <input
+          type="text"
+          id="cityInput"
+          placeholder="도시 이름을 입력하세요"
+        />
+        <button id="searchBtn">검색</button>
+      </section>
+      <section id="resultDisplay">
+        <div class="empty">
+          <div class="empty-icon">🌤️</div>
+          <h2>날씨를 검색해보세요</h2>
+          <p>서울, 부산, 제주 등 도시 이름을 입력하세요.</p>
+        </div>
+      </section>
+    </main>
+    <script src="weather.js"></script>
+  </body>
+</html>

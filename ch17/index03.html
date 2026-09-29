@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch17 - index03.html</h1>
+    <input type="text" value="주스" style="padding: 4px" id="orderInput" />
+    <button id="orderButton">주문 시작</button>
+    <p
+      id="noticeBoard"
+      style="padding: 50px; border: 1px solid #ccc; text-align: center"
+    >
+      주문을 기다리고 있습니다.
+    </p>
+    <script>
+      const orderButton = document.getElementById("orderButton");
+      const orderInput = document.getElementById("orderInput");
+      const noticeBoard = document.getElementById("noticeBoard");
+
+      function orderCoffee(order) {
+        return new Promise((resolve, rejected) => {
+          setTimeout(() => {
+            if (order === "아메리카노" || order === "라떼") {
+              resolve(order + "가 나왔습니다."); // 성공 : 이행 상태로 바꾸고 값을 전달
+            } else {
+              rejected(order + "은/는 판매하지 않습니다."); // 실패 : 거부 상태로 바꾸고 이유 전달
+            }
+          }, 3000);
+        });
+      }
+      orderButton.addEventListener("click", () => {
+        // input에 입력한 값을 가져온다.
+        // resolve 상태가 온다면 then이, rejected 상태가 온다면 catch가 실행된다.
+        orderCoffee(orderInput.value)
+          .then((message) => {
+            console.log("결과 확인: " + message);
+            noticeBoard.textContent = message;
+          })
+          .catch((error) => {
+            console.log("결과 확인: " + error);
+            noticeBoard.textContent = error;
+          });
+
+        console.log("즉시 진동벨을 받았습니다.");
+      });
+    </script>
+  </body>
+</html>

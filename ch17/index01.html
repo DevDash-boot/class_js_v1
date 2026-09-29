@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch17 - index01.html</h1>
+    <script>
+      // a -> b -> c 순서로 작업이 완료되고 6초가 걸림.
+      // 코드가 점점 안으로 파고드는 피라미드 형태가 된다.
+      // 콜백 함수가 반복됨.
+      // 단점 : 코드를 읽기 어렵고, 오류 발생 시 찾기 어렵다.
+      setTimeout(() => {
+        console.log("a 작업 완료");
+        setTimeout(() => {
+          console.log("b 작업 완료");
+          setTimeout(() => {
+            console.log("c 작업 완료");
+          }, 2000);
+        }, 2000);
+      }, 2000);
+      // 순차적인 비동기 작업을 처리하기 위해서 과거에는 이렇게 콜백을 중첩해서 사용했다.
+      // 단계가 늘수록 읽기 어렵고 에러처리가 어려워지는 것을 콜백 지옥이라고 부른다.
+      // 이 문제를 해결하고 비동기 코드를 평평하게 쓰기 위해서 Promise가 도입되었다.
+
+      // 테스트
+      console.log("여기 코드는 언제 실행되나?"); // 제일 처음 실행됨
+    </script>
+  </body>
+</html>

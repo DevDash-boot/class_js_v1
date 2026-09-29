@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ch17 - index04.html</h1>
+    <input type="text" value="주스" style="padding: 4px" id="orderInput" />
+    <button id="orderButton">주문 시작</button>
+    <p
+      id="noticeBoard"
+      style="padding: 50px; border: 1px solid #ccc; text-align: center"
+    >
+      주문을 기다리고 있습니다.
+    </p>
+    <script>
+      const orderButton = document.getElementById("orderButton");
+      const orderInput = document.getElementById("orderInput");
+      const noticeBoard = document.getElementById("noticeBoard");
+
+      function orderCoffee(order) {
+        return new Promise((resolve, rejected) => {
+          setTimeout(() => {
+            if (order === "아메리카노" || order === "라떼") {
+              resolve(order + "가 나왔습니다."); // 성공 : 이행 상태로 바꾸고 값을 전달
+            } else {
+              rejected(order + "은/는 판매하지 않습니다."); // 실패 : 거부 상태로 바꾸고 이유 전달
+            }
+          }, 3000);
+        });
+      }
+      // await를 사용하려면 그 코드를 감싸는 함수에 반드시 async를 붙여야 한다.
+      orderButton.addEventListener("click", async () => {
+        try {
+          console.log("11111111");
+          const message = await orderCoffee(orderInput.value);
+          noticeBoard.textContent = message;
+          console.log("2222222222");
+        } catch (error) {
+          noticeBoard.textContent = error;
+          console.log("3333333");
+        }
+      });
+    </script>
+  </body>
+</html>
